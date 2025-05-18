@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { FiLogIn, FiPlusCircle, FiUser, FiHeart, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
@@ -15,6 +15,11 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
   const [currentImageIndices, setCurrentImageIndices] = useState({});
   const [favorites, setFavorites] = useState(new Set());
   const [isFilterFixed, setIsFilterFixed] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const listingsPerPage = 5;
+
+  const filterSectionRef = useRef(null);
+  const headerRef = useRef(null);
 
   const allListings = useMemo(
     () => [
@@ -64,6 +69,52 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
         rooms: 2,
         yearBuilt: 2020,
       },
+      {
+        id: 4,
+        title: 'Luxury Villa',
+        price: '€500,000',
+        priceValue: 500000,
+        location: `${t('Barcelona')}, ${t('Spain')}`,
+        images: [ForuadsImg, ForuadsImg, ForuadsImg],
+        type: 'Villa',
+        dealType: 'buy',
+        description: 'A luxury villa with a sea view in Barcelona.',
+        area: 200,
+        floor: null,
+        rooms: 5,
+        yearBuilt: 2022,
+      },
+      {
+        id: 5,
+        title: 'Studio Apartment',
+        price: '€800',
+        priceValue: 800,
+        location: `${t('Rome')}, ${t('Italy')}`,
+        images: [ForuadsImg, ForuadsImg, ForuadsImg],
+        type: 'Apartment',
+        dealType: 'rent',
+        rentType: 'rent_short',
+        description: 'A cozy studio apartment in the center of Rome, available for short-term rent.',
+        area: 40,
+        floor: 2,
+        rooms: 1,
+        yearBuilt: 2019,
+      },
+      {
+        id: 6,
+        title: 'Country House',
+        price: '€200,000',
+        priceValue: 200000,
+        location: `${t('Tuscany')}, ${t('Italy')}`,
+        images: [ForuadsImg, ForuadsImg, ForuadsImg],
+        type: 'House',
+        dealType: 'buy',
+        description: 'A charming country house in the heart of Tuscany.',
+        area: 150,
+        floor: null,
+        rooms: 3,
+        yearBuilt: 2010,
+      },
     ],
     [t]
   );
@@ -79,6 +130,48 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
     { code: 'fr', name: 'Français', flag: '🇫🇷' },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const filterSection = filterSectionRef.current;
+      const header = headerRef.current;
+      if (!filterSection || !header) return;
+
+      const scrollPosition = window.scrollY;
+      const filterTop = filterSection.getBoundingClientRect().top + scrollPosition;
+      const headerHeight = header.offsetHeight;
+      const filterHeight = filterSection.offsetHeight;
+
+      // Отладочные логи
+      console.log('Scroll Position:', scrollPosition);
+      console.log('Filter Top:', filterTop);
+      console.log('Header Height:', headerHeight);
+      console.log('Filter Height:', filterHeight);
+      console.log('Threshold:', filterTop - headerHeight);
+
+      // Фиксируем фильтр, если прокрутили ниже его верхней границы
+      if (scrollPosition > filterTop - headerHeight) {
+        if (!isFilterFixed) {
+          setIsFilterFixed(true);
+          console.log('Filter fixed');
+        }
+      } else {
+        // Открепляем фильтр, если прокрутили выше
+        if (isFilterFixed) {
+          setIsFilterFixed(false);
+          console.log('Filter unfixed');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll); // Обновляем при изменении размера окна
+    handleScroll(); // Вызываем сразу для начальной проверки
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [isFilterFixed]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -100,24 +193,6 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
     }, {});
     setCurrentImageIndices(initialIndices);
   }, [location, t, allListings]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const filterSection = document.querySelector('.filter-section');
-      if (filterSection) {
-        const filterTop = filterSection.getBoundingClientRect().top;
-        const headerHeight = document.querySelector('.listings-header').offsetHeight;
-        if (window.scrollY > filterSection.offsetTop - headerHeight) {
-          setIsFilterFixed(true);
-        } else {
-          setIsFilterFixed(false);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handlePrevImage = (listingId, imageCount) => {
     setCurrentImageIndices(prev => {
@@ -182,9 +257,28 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
     return `${floor}th`;
   };
 
+  const indexOfLastListing = currentPage * listingsPerPage;
+  const indexOfFirstListing = indexOfLastListing - listingsPerPage;
+  const currentListings = listings.slice(indexOfFirstListing, indexOfLastListing);
+  const totalPages = Math.ceil(listings.length / listingsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
-      <header className="listings-header">
+      <header className="listings-header" ref={headerRef}>
         <div className="listings-header-container">
           <div className="listings-header-left">
             <Link to="/">
@@ -248,7 +342,7 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
       </header>
 
       <div className="listings">
-        <div className={`filter-section ${isFilterFixed ? 'fixed' : ''}`}>
+        <div className={`filter-section ${isFilterFixed ? 'fixed' : ''}`} ref={filterSectionRef}>
           <FilterListing
             setListings={setListings}
             allListings={allListings}
@@ -258,7 +352,7 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
         </div>
         <div className="listings-container">
           <div className="listings-list">
-            {listings.map(listing => (
+            {currentListings.map(listing => (
               <div key={listing.id} className="listing-card">
                 <div className="listing-image-wrapper">
                   <div className="listing-image-container">
@@ -355,6 +449,27 @@ function Listings({ openLoginModal, openRegisterModal, isAuthenticated }) {
               </div>
             ))}
           </div>
+          {totalPages > 1 && (
+            <div className="pagination">
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className="pagination-btn"
+              >
+                {t('previous')}
+              </button>
+              <span className="pagination-info">
+                {t('page')} {currentPage} {t('of')} {totalPages}
+              </span>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="pagination-btn"
+              >
+                {t('next')}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
