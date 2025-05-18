@@ -10,14 +10,14 @@
   min-height: calc(100vh - 120px);
 }
 
-/* Стили шапки */
-.header {
+/* Стили шапки для Listings */
+.listings-header {
   background-color: #FFFFFF;
   padding: 15px 80px;
   z-index: 1000;
 }
 
-.header-container {
+.listings-header-container {
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
@@ -25,39 +25,39 @@
   align-items: center;
 }
 
-.header-left {
+.listings-header-left {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.logo {
+.listings-logo {
   height: 60px;
   width: auto;
 }
 
-.header-title {
+.listings-header-title {
   margin: 0;
 }
 
-.header-title h1 {
-  font-size: 32px;
+.listings-header-title h3 {
+  font-size: 24px; /* Точно как в Home.css (.header-title h1) */
   font-weight: 700;
   color: #000000;
   margin: 0;
 }
 
-.header-actions {
+.listings-header-actions {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.dropdown {
+.listings-dropdown {
   position: relative;
 }
 
-.dropdown-btn {
+.listings-dropdown-btn {
   padding: 8px 16px;
   background-color: #fff;
   border: 1px solid #E5E5E5;
@@ -75,11 +75,11 @@
   transition: all 0.3s ease;
 }
 
-.dropdown-btn:hover {
+.listings-dropdown-btn:hover {
   background-color: #F0F0F0;
 }
 
-.dropdown-content {
+.listings-dropdown-content {
   display: none;
   position: absolute;
   top: 100%;
@@ -93,11 +93,11 @@
   box-sizing: border-box;
 }
 
-.dropdown:hover .dropdown-content {
+.listings-dropdown:hover .listings-dropdown-content {
   display: block;
 }
 
-.dropdown-item {
+.listings-dropdown-item {
   padding: 10px 15px;
   font-size: 14px;
   color: #000000;
@@ -109,11 +109,11 @@
   white-space: nowrap;
 }
 
-.dropdown-item:hover {
+.listings-dropdown-item:hover {
   background-color: #F0F0F0;
 }
 
-.nav-btn {
+.listings-nav-btn {
   padding: 10px 20px;
   border-radius: 12px;
   text-decoration: none;
@@ -129,30 +129,30 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav-btn:hover {
+.listings-nav-btn:hover {
   background-color: #6B2D5C;
   color: #FFFFFF;
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.nav-btn.primary {
+.listings-nav-btn-primary {
   background-color: #6B2D5C;
   color: #FFFFFF;
   border: none;
 }
 
-.nav-btn.primary:hover {
+.listings-nav-btn-primary:hover {
   background-color: #5A264F;
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.nav-btn-icon {
+.listings-nav-btn-icon {
   font-size: 16px;
 }
 
-.user-avatar {
+.listings-user-avatar {
   width: 44px;
   height: 44px;
   background: linear-gradient(145deg, #F5F5F5, #EDEDED);
@@ -166,15 +166,41 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.avatar-icon {
+.listings-avatar-icon {
   font-size: 22px;
   color: #6B2D5C;
+}
+
+/* Секция фильтра */
+.filter-section {
+  width: 100%;
+  padding: 0 !important;
+  box-sizing: border-box;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  transition: all 0.3s ease;
+}
+
+.filter-section.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 80px !important;
+  margin: 0 !important;
 }
 
 /* Контейнер листингов */
 .listings-container {
   max-width: 1440px;
   margin: 0 auto;
+  margin-top: 40px; /* Увеличиваем отступ от фильтра */
 }
 
 /* Список листингов */
@@ -182,6 +208,12 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-top: 20px;
+}
+
+/* Когда фильтр фиксирован, добавляем дополнительный отступ */
+.filter-section.fixed + .listings-container {
+  padding-top: 80px; /* Учитываем высоту фиксированного фильтра */
 }
 
 /* Карточка листинга */
@@ -194,6 +226,7 @@
   border-radius: 16px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   gap: 20px;
+  min-height: 300px; /* Минимальная высота карточки */
 }
 
 .listing-card:hover {
@@ -362,6 +395,8 @@
   padding: 15px 0;
   flex-grow: 1;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .listing-link {
@@ -375,6 +410,9 @@
   margin: 0 0 8px;
   line-height: 1.5;
   color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .listing-details .price {
@@ -397,6 +435,11 @@
   color: #333;
   margin: 12px 0 0;
   line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Ограничим описание тремя строками */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Характеристики листинга */
@@ -452,6 +495,42 @@
   text-transform: lowercase;
 }
 
+/* Пагинация */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.pagination-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid #E5E5E5;
+  background-color: #FFFFFF;
+  color: #6B2D5C;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #666;
+}
+
 /* Стили подвала */
 .footer {
   background-color: #6B2D5C;
@@ -481,65 +560,78 @@
 
 /* Медиа-запросы для шапки */
 @media (max-width: 768px) {
-  .header {
+  .listings-header {
     padding: 15px 60px;
   }
 
-  .header-actions {
+  .listings-header-actions {
     gap: 10px;
   }
 
-  .dropdown-btn {
+  .listings-dropdown-btn {
     padding: 6px 12px;
     font-size: 12px;
     min-width: 120px;
   }
 
-  .nav-btn {
+  .listings-nav-btn {
     padding: 8px 15px;
     font-size: 12px;
   }
 
-  .user-avatar {
+  .listings-user-avatar {
     width: 40px;
     height: 40px;
     border-width: 2px;
   }
 
-  .avatar-icon {
+  .listings-avatar-icon {
     font-size: 20px;
   }
 
-  .header-title h1 {
-    font-size: 28px;
+  .listings-header-title h3 {
+    font-size: 20px; /* Как в Home.css */
   }
 }
 
 @media (max-width: 480px) {
-  .header {
+  .listings-header {
     padding: 15px 40px;
   }
 
-  .header-title h1 {
-    font-size: 24px;
+  .listings-header-title h3 {
+    font-size: 18px; /* Как в Home.css */
   }
 
-  .logo {
-    height: 40px;
+  .listings-logo {
+    height: 40px; /* Как в Home.css */
   }
 
-  .dropdown-btn {
+  .listings-dropdown-btn {
     min-width: 100px;
   }
 
-  .user-avatar {
+  .listings-user-avatar {
     width: 36px;
     height: 36px;
     border-width: 2px;
   }
 
-  .avatar-icon {
+  .listings-avatar-icon {
     font-size: 18px;
+  }
+}
+
+/* Медиа-запросы для фильтра */
+@media (max-width: 768px) {
+  .filter-section.fixed {
+    padding: 10px 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-section.fixed {
+    padding: 10px 40px !important;
   }
 }
 
@@ -642,6 +734,7 @@
 
   .listing-card {
     gap: 8px;
+    min-height: 250px; /* Меньшая высота для мобильных */
   }
 
   .listing-image-container {
@@ -654,22 +747,24 @@
 
   .thumbnail-image {
     width: 100px;
+    min-width: 100px; /* Минимальная ширина для thumbnails */
   }
 
   .listing-details h3 {
-    font-size: 18px;
+    font-size: 20px; /* Чуть больше для читаемости */
   }
 
   .listing-details .price {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .listing-details .location {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .listing-details .description {
-    font-size: 12px;
+    font-size: 13px;
+    -webkit-line-clamp: 2; /* Меньше строк на мобильных */
   }
 
   .spec-property-type,
