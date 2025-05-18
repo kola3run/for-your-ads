@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Оверлей для модалки (фон с затемнением) */
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Контейнер модалки */
+.login-modal {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  max-width: 360px;
+  min-height: 520px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Кнопка "Back" */
+.login-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6B2D5C;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+  position: absolute;
+  left: 24px;
+  top: 24px;
+}
+
+.login-back-btn:hover {
+  color: #5A264F;
+}
+
+.login-back-icon {
+  font-size: 16px;
+}
+
+/* Хедер модалки */
+.login-modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.login-modal-header h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Контент модалки */
+.login-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Сообщения об ошибках и успехе */
+.login-error-message,
+.login-success-message {
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+  opacity: 0;
+  animation: messageFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes messageFadeIn {
+  to { opacity: 1; }
+}
+
+.login-error-message {
+  color: #D32F2F;
+  background-color: #FFF1F1;
+}
+
+.login-success-message {
+  color: #388E3C;
+  background-color: #F1F8F1;
+}
+
+/* Форма логина */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Группа полей ввода */
+.login-form-group {
+  text-align: left;
+}
+
+.login-form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Обёртка для инпутов с иконками */
+.login-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Иконки внутри полей ввода */
+.login-input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+/* Поля ввода */
+.login-form-group input {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.login-form-group input:hover {
+  background: #F9F9F9;
+}
+
+.login-form-group input:focus {
+  outline: none;
+  border-color: #6B2D5C;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px rgba(107, 45, 92, 0.15);
+}
+
+.login-form-group input:focus + .login-input-icon {
+  color: #6B2D5C;
+}
+
+.login-form-group input::placeholder {
+  color: #AAA;
+}
+
+/* Кнопка "Login" */
+.login-btn {
+  padding: 12px;
+  background: #6B2D5C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn:hover {
+  background: #5A264F;
+  transform: scale(1.02);
+}
+
+/* Кнопка "Sign in with Google" */
+.login-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-google-btn:hover {
+  background: #F0F0F0;
+  border-color: #D0D0D0;
+}
+
+.login-google-icon {
+  font-size: 18px;
+}
+
+/* Ссылка на регистрацию */
+.login-register-link {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.login-link-btn {
+  color: #6B2D5C;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.login-link-btn:hover {
+  color: #5A264F;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 480px) {
+  .login-modal {
+    padding: 16px;
+    max-width: 90%;
+    min-height: 480px;
+  }
+
+  .login-modal-header h3 {
+    font-size: 22px;
+  }
+
+  .login-back-btn {
+    font-size: 13px;
+    left: 16px;
+    top: 16px;
+  }
+
+  .login-back-icon {
+    font-size: 14px;
+  }
+
+  .login-form-group input {
+    font-size: 13px;
+    padding: 10px 15px 10px 36px;
+  }
+
+  .login-input-icon {
+    font-size: 14px;
+    left: 10px;
+  }
+
+  .login-btn,
+  .login-google-btn {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .login-google-icon {
+    font-size: 16px;
+  }
+
+  .login-register-link {
+    font-size: 13px;
+  }
+}

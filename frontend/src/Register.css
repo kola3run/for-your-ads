@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Оверлей */
+.register-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Модалка */
+.register-modal {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  max-width: 360px;
+  min-height: 520px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Back to Home */
+.register-modal-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6B2D5C;
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 20px;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.register-modal-back-btn:hover {
+  color: #5A264F;
+}
+
+.register-modal-back-icon {
+  font-size: 16px;
+}
+
+/* Хедер */
+.register-modal-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.register-modal-header h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Переключатель */
+.register-modal-user-type-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.register-modal-toggle-btn {
+  padding: 8px 16px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  background: #FFFFFF;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.register-modal-toggle-btn.active {
+  background: #6B2D5C;
+  color: #FFFFFF;
+  border-color: #6B2D5C;
+}
+
+.register-modal-toggle-btn:hover {
+  background: #F0F0F0;
+  border-color: #D0D0D0;
+}
+
+/* Контент */
+.register-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Сообщения */
+.register-modal-error-message,
+.register-modal-success-message {
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+  opacity: 0;
+  animation: messageFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes messageFadeIn {
+  to { opacity: 1; }
+}
+
+.register-modal-error-message {
+  color: #D32F2F;
+  background-color: #FFF1F1;
+}
+
+.register-modal-success-message {
+  color: #388E3C;
+  background-color: #F1F8F1;
+}
+
+/* Форма */
+.register-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Поля */
+.register-modal-form-group {
+  text-align: left;
+}
+
+.register-modal-form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Обёртка инпута */
+.register-modal-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Иконки */
+.register-modal-input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+/* Поля ввода */
+.register-modal-form-group input {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.register-modal-form-group input:hover {
+  background: #F9F9F9;
+}
+
+.register-modal-form-group input:focus {
+  outline: none;
+  border-color: #6B2D5C;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px rgba(107, 45, 92, 0.15);
+}
+
+.register-modal-form-group input:focus + .register-modal-input-icon {
+  color: #6B2D5C;
+}
+
+.register-modal-form-group input::placeholder {
+  color: #AAA;
+}
+
+.register-modal-form-group input:disabled {
+  background: #F5F5F5;
+  cursor: not-allowed;
+}
+
+/* Email-группа с Verify */
+.register-modal-email-group .register-modal-input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.register-modal-email-group input {
+  flex: 1;
+}
+
+.register-modal-verify-btn {
+  padding: 8px 16px;
+  background: #6B2D5C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.register-modal-verify-btn:hover {
+  background: #5A264F;
+}
+
+/* Кнопка регистрации */
+.register-modal-btn {
+  padding: 12px;
+  background: #6B2D5C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.register-modal-btn:hover {
+  background: #5A264F;
+  transform: scale(1.02);
+}
+
+/* Ссылка на логин */
+.register-modal-login-link {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.register-modal-link-btn {
+  color: #6B2D5C;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.register-modal-link-btn:hover {
+  color: #5A264F;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .register-modal {
+    padding: 16px;
+    max-width: 90%;
+    min-height: 480px;
+  }
+
+  .register-modal-header h3 {
+    font-size: 22px;
+  }
+
+  .register-modal-back-btn {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .register-modal-back-icon {
+    font-size: 14px;
+  }
+
+  .register-modal-toggle-btn {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .register-modal-form-group input {
+    font-size: 13px;
+    padding: 10px 15px 10px 36px;
+  }
+
+  .register-modal-input-icon {
+    font-size: 14px;
+    left: 10px;
+  }
+
+  .register-modal-verify-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .register-modal-btn {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .register-modal-login-link {
+    font-size: 13px;
+  }
+}

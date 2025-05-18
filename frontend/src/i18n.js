@@ -1,0 +1,132 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+const resources = {
+  en: {
+    translation: {
+      offer_title_base: "Find Your Perfect Property in",
+      offer_title_europe: "Find Your Perfect Property in Europe",
+      offer_text: "Discover the best properties for rent and sale across Europe.",
+      offer_button: "Search",
+      search_country: "Select country",
+      search_city: "Select city",
+      search_price_max: "Max price",
+      popular_cities: "Popular Cities",
+      properties: "properties",
+      best_offers: "Best Offers",
+      buy: "Buy",
+      rent: "Rent",
+      rent_long: "Long-term",
+      rent_short: "Short-term",
+      details: "Details",
+      about_title: "About Us",
+      about_text: "We help you find the best properties across Europe, whether you're looking to buy, rent long-term, or book a short-term stay.",
+      footer_about: "About",
+      footer_about_text: "4 Your Ads is a platform for finding properties across Europe.",
+      footer_support: "Support",
+      footer_support_email: "support@4yourads.com",
+      footer_contacts: "Contacts",
+      footer_phone: "+123 456 7890",
+      register: "Post Ad",
+      login: "Login",
+      // Страны
+      France: "France",
+      Germany: "Germany",
+      Netherlands: "Netherlands",
+      // Города
+      Paris: "Paris",
+      Berlin: "Berlin",
+      Amsterdam: "Amsterdam",
+      Lisbon: "Lisbon",
+    },
+  },
+  de: {
+    translation: {
+      offer_title_base: "Finden Sie Ihre perfekte Immobilie in",
+      offer_title_europe: "Finden Sie Ihre perfekte Immobilie in Europa",
+      offer_text: "Entdecken Sie die besten Immobilien zum Mieten und Kaufen in ganz Europa.",
+      offer_button: "Suchen",
+      search_country: "Land auswählen",
+      search_city: "Stadt auswählen",
+      search_price_max: "Maximaler Preis",
+      popular_cities: "Beliebte Städte",
+      properties: "Immobilien",
+      best_offers: "Beste Angebote",
+      buy: "Kaufen",
+      rent: "Mieten",
+      rent_long: "Langfristig",
+      rent_short: "Kurzfristig",
+      details: "Details",
+      about_title: "Über uns",
+      about_text: "Wir helfen Ihnen, die besten Immobilien in ganz Europa zu finden, egal ob Sie kaufen, langfristig mieten oder einen kurzfristigen Aufenthalt buchen möchten.",
+      footer_about: "Über",
+      footer_about_text: "4 Your Ads ist eine Plattform, um Immobilien in ganz Europa zu finden.",
+      footer_support: "Support",
+      footer_support_email: "support@4yourads.com",
+      footer_contacts: "Kontakte",
+      footer_phone: "+123 456 7890",
+      register: "Anzeige aufgeben",
+      login: "Einloggen",
+      // Страны
+      France: "Frankreich",
+      Germany: "Deutschland",
+      Netherlands: "Niederlande",
+      // Города
+      Paris: "Paris",
+      Berlin: "Berlin",
+      Amsterdam: "Amsterdam",
+      Lisbon: "Lissabon",
+    },
+  },
+  fr: {
+    translation: {
+      offer_title_base: "Trouvez votre propriété idéale à",
+      offer_title_europe: "Trouvez votre propriété idéale en Europe",
+      offer_text: "Découvrez les meilleures propriétés à louer et à vendre à travers l'Europe.",
+      offer_button: "Rechercher",
+      search_country: "Sélectionner un pays",
+      search_city: "Sélectionner une ville",
+      search_price_max: "Prix maximum",
+      popular_cities: "Villes populaires",
+      properties: "propriétés",
+      best_offers: "Meilleures offres",
+      buy: "Acheter",
+      rent: "Louer",
+      rent_long: "Long terme",
+      rent_short: "Court terme",
+      details: "Détails",
+      about_title: "À propos de nous",
+      about_text: "Nous vous aidons à trouver les meilleures propriétés à travers l'Europe, que vous souhaitiez acheter, louer à long terme ou réserver un séjour à court terme.",
+      footer_about: "À propos",
+      footer_about_text: "4 Your Ads est une plateforme pour trouver des propriétés à travers l'Europe.",
+      footer_support: "Support",
+      footer_support_email: "support@4yourads.com",
+      footer_contacts: "Contacts",
+      footer_phone: "+123 456 7890",
+      register: "Publier une annonce",
+      login: "Se connecter",
+      // Страны
+      France: "France",
+      Germany: "Allemagne",
+      Netherlands: "Pays-Bas",
+      // Города
+      Paris: "Paris",
+      Berlin: "Berlin",
+      Amsterdam: "Amsterdam",
+      Lisbon: "Lisbonne",
+    },
+  },
+};
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: 'en',
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+
+export default i18n;

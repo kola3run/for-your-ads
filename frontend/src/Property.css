@@ -1,0 +1,970 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Базовые стили */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+/* Хедер */
+.property-header {
+  background-color: #FFFFFF;
+  padding: 40px 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.property-header-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 120px;
+}
+
+.property-header-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.property-logo {
+  height: 60px;
+  width: auto;
+}
+
+.property-header-title {
+  margin: 0;
+}
+
+.property-header-title h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+}
+
+.property-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.property-nav-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6B2D5C;
+  border: 2px solid #E5E5E5;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.property-nav-btn:hover {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.property-nav-btn-icon {
+  font-size: 16px;
+}
+
+.property-primary {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  border: none;
+}
+
+.property-primary:hover {
+  background-color: #5A264F;
+  color: #FFFFFF;
+  border: none;
+}
+
+/* Выпадающие меню */
+.property-dropdown {
+  position: relative;
+}
+
+.property-dropdown-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6B2D5C;
+  border: 2px solid #E5E5E5;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.property-dropdown-btn:hover {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.property-dropdown-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 150px;
+  z-index: 1000;
+  display: none;
+}
+
+.property-dropdown:hover .property-dropdown-content {
+  display: block;
+}
+
+.property-dropdown-item {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #212529;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.property-dropdown-item:hover {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+}
+
+/* Аватарка пользователя */
+.property-user-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(145deg, #F5F5F5, #EDEDED);
+  border: 3px solid #6B2D5C;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.property-avatar-icon {
+  font-size: 22px;
+  color: #6B2D5C;
+}
+
+.property-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Стили страницы Property */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+}
+
+.property-details {
+  flex: 1;
+  padding: 100px 120px 0;
+  background-color: #FFFFFF;
+}
+
+.property-content {
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+}
+
+.property-left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.property-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.main-image-container {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.thumbnail-gallery {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.carousel-arrow {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #6B2D5C;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  border-color: #6B2D5C;
+}
+
+.carousel-prev {
+  left: -15px;
+}
+
+.carousel-next {
+  right: -15px;
+}
+
+.thumbnail-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.thumbnail-track {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail-slide {
+  flex: 0 0 calc(25% - 7.5px);
+}
+
+.thumbnail {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+  transition: all 0.3s ease;
+}
+
+.thumbnail:hover {
+  border-color: #6B2D5C;
+  transform: scale(1.05);
+}
+
+.property-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.property-description h2,
+.property-features h2,
+.property-map h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 15px;
+}
+
+.property-description p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-icon {
+  font-size: 20px;
+  color: #6B2D5C;
+}
+
+.feature-label {
+  font-weight: 600;
+  color: #212529;
+}
+
+.map-container {
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.property-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: #212529;
+}
+
+.views {
+  color: #6B2D5C;
+}
+
+.property-info {
+  flex: 0 0 250px; /* Увеличили ширину до 250px */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Увеличили зазор для лучшего баланса */
+}
+
+.favorite-btn {
+  align-self: flex-end;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+  background-color: #F0F0F0;
+}
+
+.favorite-active {
+  background-color: #6B2D5C;
+  border-color: #6B2D5C;
+}
+
+.favorite-active .favorite-icon {
+  color: #FFFFFF;
+}
+
+.favorite-icon {
+  font-size: 20px;
+  color: #6B2D5C;
+}
+
+.property-header-price {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title-price-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.property-header-price h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.area-highlight {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6B2D5C;
+}
+
+.property-price {
+  font-size: 20px;
+  font-weight: 600;
+  color: #6B2D5C;
+}
+
+.property-exact-address {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.address-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #212529;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.address-link:hover {
+  color: #6B2D5C;
+}
+
+.address-icon {
+  font-size: 16px;
+  color: #6B2D5C;
+}
+
+.property-house-info {
+  padding: 10px;
+  background-color: #F9F9F9;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.house-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.house-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.house-info-icon {
+  font-size: 20px;
+  color: #6B2D5C;
+}
+
+.house-info-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.house-info-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.contact-btn {
+  padding: 6px; /* Уменьшили padding для компактности */
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.show-phone-btn {
+  background-color: #FFFFFF;
+  color: #6B2D5C;
+  border: 2px solid #6B2D5C;
+}
+
+.show-phone-btn:hover {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+}
+
+.whatsapp-btn {
+  background-color: #25D366;
+  color: #FFFFFF;
+  border: none;
+  text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+  background-color: #20B058;
+}
+
+.whatsapp-icon {
+  font-size: 16px;
+}
+
+.book-btn {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  border: none;
+}
+
+.book-btn:hover {
+  background-color: #5A264F;
+}
+
+.share-btn {
+  background-color: #FFFFFF;
+  color: #6B2D5C;
+  border: 2px solid #E5E5E5;
+}
+
+.share-btn:hover {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  border-color: #6B2D5C;
+}
+
+.share-icon {
+  font-size: 16px;
+}
+
+.phone-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: #212529;
+  text-align: center;
+  margin: 0;
+}
+
+.property-seller-contact {
+  padding: 10px;
+  background-color: #F9F9F9;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.seller-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.seller-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.seller-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #6B2D5C;
+}
+
+.seller-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.realtor-icon {
+  font-size: 16px;
+  color: #6B2D5C;
+}
+
+.subscribe-btn {
+  padding: 10px;
+  background-color: #FFFFFF;
+  color: #6B2D5C;
+  border: 2px solid #6B2D5C;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.subscribe-btn:hover {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+}
+
+.subscribed {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  border-color: #6B2D5C;
+}
+
+.subscribed:hover {
+  background-color: #5A264F;
+}
+
+/* Стили для страницы "Не найдено" */
+.not-found {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+}
+
+.not-found-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.not-found h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #5A264F;
+  transform: scale(1.05);
+}
+
+.back-btn-icon {
+  font-size: 16px;
+}
+
+/* Подвал */
+.footer {
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  padding: 40px 60px;
+}
+
+.footer-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.footer h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .property-details {
+    padding: 80px 60px 0;
+  }
+
+  .property-header-container {
+    padding: 0 60px;
+  }
+
+  .property-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .property-info {
+    flex: 1;
+  }
+
+  .footer {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .property-header {
+    padding: 20px 0;
+  }
+
+  .property-header-container {
+    padding: 0 30px;
+  }
+
+  .property-header-left {
+    gap: 15px;
+  }
+
+  .property-header-title h1 {
+    font-size: 20px;
+  }
+
+  .property-logo {
+    height: 50px;
+  }
+
+  .property-nav-btn,
+  .property-dropdown-btn {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+
+  .property-nav-btn-icon {
+    font-size: 14px;
+  }
+
+  .property-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+
+  .property-avatar-icon {
+    font-size: 20px;
+  }
+
+  .property-details {
+    padding: 60px 30px 0;
+  }
+
+  .property-left-column {
+    gap: 20px;
+  }
+
+  .main-image {
+    height: 300px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .thumbnail-slide {
+    flex: 0 0 calc(25% - 7.5px);
+  }
+
+  .thumbnail {
+    height: 60px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-container {
+    height: 250px;
+  }
+
+  .property-header-price h1 {
+    font-size: 20px;
+  }
+
+  .area-highlight {
+    font-size: 14px;
+  }
+
+  .property-price {
+    font-size: 18px;
+  }
+
+  .seller-header h2 {
+    font-size: 16px;
+  }
+
+  .seller-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .house-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .property-header {
+    padding: 15px 0;
+  }
+
+  .property-header-container {
+    padding: 0 15px;
+  }
+
+  .property-header-left {
+    gap: 10px;
+  }
+
+  .property-header-title h1 {
+    font-size: 18px;
+  }
+
+  .property-logo {
+    height: 40px;
+  }
+
+  .property-nav-btn,
+  .property-dropdown-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .property-nav-btn-icon {
+    font-size: 12px;
+  }
+
+  .property-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-width: 2px;
+  }
+
+  .property-avatar-icon {
+    font-size: 18px;
+  }
+
+  .property-details {
+    padding: 40px 15px 0;
+  }
+
+  .property-left-column {
+    gap: 20px;
+  }
+
+  .main-image {
+    height: 250px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .thumbnail {
+    height: 50px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .property-description h2,
+  .property-features h2,
+  .property-map h2 {
+    font-size: 18px;
+  }
+
+  .property-meta {
+    font-size: 12px;
+  }
+
+  .favorite-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .favorite-icon {
+    font-size: 18px;
+  }
+
+  .property-header-price h1 {
+    font-size: 18px;
+  }
+
+  .property-price {
+    font-size: 16px;
+  }
+
+  .contact-btn {
+    font-size: 12px;
+    padding: 4px; /* Ещё меньше padding для маленьких экранов */
+  }
+
+  .phone-number {
+    font-size: 12px;
+  }
+
+  .seller-header h2 {
+    font-size: 14px;
+  }
+
+  .seller-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .subscribe-btn {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .not-found {
+    padding: 30px;
+  }
+
+  .not-found h2 {
+    font-size: 20px;
+  }
+
+  .back-btn {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .footer {
+    padding: 15px 10px;
+  }
+}

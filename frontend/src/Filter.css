@@ -1,0 +1,1004 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Полоса поиска */
+.offer .search-bar {
+  background-color: transparent;
+  padding: 15px 0 5px 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Секция фильтра */
+.offer .filter-section {
+  width: 100%;
+  padding: 0 !important; /* Убраны отступы, чтобы совпадать с .offer */
+  box-sizing: border-box;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+}
+
+/* Контейнер для фильтра */
+.offer .search-bar-container {
+  width: 100%;
+  padding: 0 !important; /* Убраны отступы, чтобы совпадать с .offer */
+  box-sizing: border-box;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+}
+
+/* Общий контейнер для фильтра и кнопки поиска */
+.offer .filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: center !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+}
+
+/* Контейнер фильтра */
+.offer .filter-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background-color: #FFFFFF;
+  border: 1px solid #D0D0D0;
+  border-radius: 8px;
+  padding: 1px;
+  flex-grow: 1;
+  flex-wrap: nowrap;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Длинные разделительные линии между основными секциями */
+.offer .filter-container > *:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 1px;
+  height: 24px;
+  background-color: #D0D0D0;
+  z-index: 1;
+}
+
+/* Блок выбора страны и города */
+.offer .location-selector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  cursor: pointer;
+  flex: 1 1 auto;
+  min-width: 120px;
+  height: 40px;
+  box-sizing: border-box;
+  line-height: 1;
+  border: none;
+  border-radius: 8px 0 0 8px;
+}
+
+/* Короткая разделительная линия внутри location-selector */
+.offer .location-selector.has-divider .location-part.country::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 1px;
+  height: 16px;
+  background-color: #D0D0D0;
+  display: block;
+  z-index: 1;
+}
+
+.offer .location-selector .location-part {
+  flex: 1;
+  padding: 0;
+  justify-content: center;
+  position: relative;
+}
+
+.offer .location-part.country.full {
+  flex: 1;
+  justify-content: center;
+}
+
+.offer .location-part {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  gap: 4px;
+  height: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.offer .location-part.country {
+  padding-left: 8px;
+}
+
+.offer .location-part.city {
+  padding-right: 8px;
+}
+
+.offer .location-part:hover {
+  background-color: #F0F0F0;
+  position: relative;
+}
+
+.offer .location-part.country:hover::before,
+.offer .location-part.city:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #F0F0F0;
+  z-index: 0;
+}
+
+.offer .location-part.country:hover::before {
+  border-radius: 8px 0 0 8px;
+  right: -1px;
+}
+
+.offer .location-part.city:hover::before {
+  left: -1px;
+}
+
+.offer .location-text {
+  color: #222;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Стили для фильтра типа сделки */
+.offer .deal-type-selector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  cursor: pointer;
+  flex: 1 1 auto;
+  min-width: 120px;
+  height: 40px;
+  box-sizing: border-box;
+  line-height: 1;
+  border: none;
+  border-radius: 0;
+}
+
+/* Короткая разделительная линия внутри deal-type-selector */
+.offer .deal-type-selector.has-divider .deal-type-part.deal::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 1px;
+  height: 16px;
+  background-color: #D0D0D0;
+  display: block;
+  z-index: 1;
+}
+
+.offer .deal-type-selector .deal-type-part {
+  flex: 1;
+  padding: 0;
+  justify-content: center;
+  position: relative;
+}
+
+.offer .deal-type-part.deal.full {
+  flex: 1;
+  justify-content: center;
+}
+
+.offer .deal-type-part {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  gap: 4px;
+  height: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.offer .deal-type-part.deal {
+  padding-left: 8px;
+}
+
+.offer .deal-type-part.rent-type {
+  padding-right: 8px;
+}
+
+.offer .deal-type-part:hover {
+  background-color: #F0F0F0;
+  position: relative;
+}
+
+.offer .deal-type-part.deal:hover::before,
+.offer .deal-type-part.rent-type:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #F0F0F0;
+  z-index: 0;
+}
+
+.offer .deal-type-part.deal:hover::before {
+  left: -1px;
+  right: -1px;
+}
+
+.offer .deal-type-part.deal.full:hover::before {
+  right: -1px;
+}
+
+.offer .deal-type-part.rent-type:hover::before {
+  left: -1px;
+  right: -1px;
+}
+
+.offer .deal-type-text {
+  color: #222;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Стили для выпадающего списка */
+.offer .deal-type-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: -1px;
+  right: -1px;
+  background-color: #fff;
+  border: 1px solid #D0D0D0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.offer .deal-type-part.deal.full .deal-type-dropdown {
+  right: -1px;
+}
+
+.offer .deal-type-dropdown.open {
+  display: block;
+}
+
+.offer .deal-type-option {
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.offer .deal-type-option:hover {
+  background-color: #F0F0F0;
+}
+
+.offer .rent-type-dropdown {
+  left: -1px;
+  right: -1px;
+}
+
+/* Стили для фильтра типа недвижимости */
+.offer .property-type-selector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  cursor: pointer;
+  flex: 1 1 auto;
+  min-width: 120px;
+  height: 40px;
+  box-sizing: border-box;
+  line-height: 1;
+  border: none;
+  border-radius: 0;
+}
+
+.offer .property-type-part {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 8px;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.offer .property-type-part:hover {
+  background-color: #F0F0F0;
+  position: relative;
+}
+
+.offer .property-type-part:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  right: -1px;
+  background-color: #F0F0F0;
+  z-index: 0;
+}
+
+.offer .property-type-text {
+  color: #222;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Стили для выпадающего списка */
+.offer .property-type-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: -1px;
+  right: -1px;
+  background-color: #fff;
+  border: 1px solid #D0D0D0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.offer .property-type-dropdown.open {
+  display: block;
+}
+
+.offer .property-type-option {
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.offer .property-type-option:hover {
+  background-color: #F0F0F0;
+}
+
+/* Стили для поля ввода цены */
+.offer .price-input-container {
+  position: relative;
+  display: flex;
+  visibility: visible;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 120px;
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  box-sizing: border-box;
+  padding: 0;
+  background-color: #FFFFFF;
+}
+
+.offer .price-input {
+  padding: 0 24px 0 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: center;
+  line-height: 1;
+  background-color: #FFFFFF;
+  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 1;
+  margin-right: -1px;
+  box-shadow: none;
+}
+
+.offer .price-input:hover:placeholder-shown {
+  background-color: #F0F0F0;
+}
+
+.offer .price-input:hover:not(:placeholder-shown) {
+  background-color: #FFFFFF;
+}
+
+.offer .price-input:focus {
+  outline: none;
+  background-color: #FFFFFF;
+  box-shadow: none;
+}
+
+.offer .price-input::-webkit-inner-spin-button,
+.offer .price-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.offer .price-input::placeholder {
+  color: #555;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.offer .currency-symbol {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #666;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Кнопка "Map" */
+.offer .map-btn {
+  padding: 0 12px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  border: 1px solid #D0D0D0;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.offer .map-btn:hover,
+.offer .map-btn:focus {
+  background-color: #F0F0F0;
+  outline: none;
+}
+
+.offer .map-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.offer .map-btn-icon {
+  font-size: 16px;
+}
+
+.offer .map-btn-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Кнопка поиска */
+.offer .search-btn {
+  padding: 0 12px;
+  background-color: #6B2D5C;
+  color: #FFFFFF;
+  border: 1px solid #D0D0D0;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 40px;
+  box-sizing: border-box;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.offer .search-btn:hover,
+.offer .search-btn:focus {
+  background-color: #5A264F;
+  outline: none;
+}
+
+/* Стили для модального окна */
+.offer .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.offer .modal {
+  background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+  border-radius: 16px;
+  width: 700px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease-out;
+}
+
+.offer .modal-countries {
+  width: 1200px;
+}
+
+.offer .modal-cities {
+  width: 500px;
+  max-height: 70vh;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.offer .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  border-bottom: 1px solid #E5E5E5;
+  background-color: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.offer .modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  text-transform: uppercase;
+}
+
+.offer .modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.offer .modal-close:hover {
+  color: #6B2D5C;
+}
+
+.offer .modal-search-container {
+  position: relative;
+  margin: 20px 30px;
+}
+
+.offer .modal-search {
+  padding: 0 12px 0 40px;
+  border: 1px solid #D0D0D0;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.offer .modal-search:hover,
+.offer .modal-search:focus {
+  border-color: #D0D0D0;
+  outline: none;
+}
+
+.offer .modal-search::placeholder {
+  color: #999;
+  text-transform: capitalize;
+}
+
+.offer .modal-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 14px;
+}
+
+.offer .modal-content {
+  flex: 1;
+  padding: 20px 30px;
+  background: linear-gradient(to bottom, rgba(255, 255, 251, 0) 90%, rgba(200, 200, 200, 0.2) 100%);
+}
+
+.offer .modal-countries .modal-content {
+  overflow-y: hidden;
+}
+
+.offer .modal-cities .modal-content {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.offer .modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offer .countries-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.offer .cities-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offer .modal-item {
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  border: 1px solid #D0D0D0;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: background 0.3s ease;
+  height: 40px;
+}
+
+.offer .modal-item:hover {
+  background: linear-gradient(90deg, #f8f8f8 0%, #f0f0f0 100%);
+}
+
+.offer .modal-item.city-item {
+  white-space: normal;
+  overflow-wrap: break-word;
+  padding: 0 12px;
+}
+
+.offer .modal-item.selected {
+  background: linear-gradient(90deg, #6B2D5C 0%, #5A264F 100%);
+  color: #fff;
+  border: 1px solid #D0D0D0;
+}
+
+.offer .modal-item-icon {
+  font-size: 14px;
+}
+
+.offer .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px 30px;
+  border-top: 1px solid #E5E5E5;
+  background-color: #fff;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.offer .modal-btn {
+  padding: 0 12px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: capitalize;
+  height: 40px;
+  border: 1px solid #D0D0D0;
+  color: #222;
+}
+
+.offer .modal-btn:hover,
+.offer .modal-btn:focus {
+  background-color: #F0F0F0;
+  outline: none;
+}
+
+.offer .modal-btn.clear {
+  background-color: #f0f0f0;
+  color: #666;
+  border: 1px solid #D0D0D0;
+}
+
+.offer .modal-btn.clear:hover {
+  background-color: #e0e0e0;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 1024px) {
+  .offer .filter-section {
+    padding: 0 !important;
+  }
+
+  .offer .search-bar-container {
+    padding: 0 !important;
+  }
+
+  .offer .filter-container {
+    padding: 8px 10px;
+  }
+
+  .offer .location-selector,
+  .offer .deal-type-selector,
+  .offer .property-type-selector,
+  .offer .price-input-container,
+  .offer .map-btn {
+    min-width: 90px;
+    font-size: 14px;
+    padding: 0 12px;
+    height: 40px;
+  }
+
+  .offer .deal-type-text,
+  .offer .property-type-text,
+  .offer .location-text {
+    font-size: 14px;
+  }
+
+  .offer .search-btn {
+    min-width: 100px;
+    font-size: 14px;
+    padding: 0 12px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .offer .search-bar {
+    padding: 10px 0 5px 0;
+  }
+
+  .offer .filter-section {
+    padding: 0 !important;
+  }
+
+  .offer .search-bar-container {
+    padding: 0 !important;
+  }
+
+  .offer .filter-wrapper {
+    gap: 8px;
+  }
+
+  .offer .filter-container {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .offer .filter-container > *::after {
+    display: none;
+  }
+
+  .offer .location-selector,
+  .offer .deal-type-selector,
+  .offer .property-type-selector,
+  .offer .price-input-container {
+    flex: 1 1 100%;
+    min-width: 100%;
+    border: 1px solid #D0D0D0;
+    border-radius: 8px;
+  }
+
+  .offer .location-selector {
+    border-radius: 8px;
+  }
+
+  .offer .deal-type-selector {
+    border-radius: 8px;
+  }
+
+  .offer .property-type-selector {
+    border-radius: 8px;
+  }
+
+  .offer .price-input-container {
+    border-radius: 8px;
+  }
+
+  .offer .map-btn,
+  .offer .search-btn {
+    flex: 1 1 48%;
+    margin-left: 0;
+    margin-top: 8px;
+    min-width: 120px;
+    font-size: 14px;
+    padding: 0 12px;
+    height: 40px;
+  }
+
+  .offer .deal-type-text,
+  .offer .property-type-text,
+  .offer .location-text {
+    font-size: 14px;
+  }
+
+  .offer .modal {
+    width: 90%;
+    max-height: 80vh;
+  }
+
+  .offer .modal-countries {
+    width: 90%;
+  }
+
+  .offer .countries-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .offer .modal-cities {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .offer .filter-section {
+    padding: 0 !important;
+  }
+
+  .offer .search-bar-container {
+    padding: 0 !important;
+  }
+
+  .offer .filter-wrapper {
+    gap: 8px;
+  }
+
+  .offer .filter-container {
+    padding: 6px;
+  }
+
+  .offer .location-selector,
+  .offer .deal-type-selector,
+  .offer .property-type-selector,
+  .offer .price-input-container,
+  .offer .map-btn {
+    min-width: 70px;
+    font-size: 12px;
+    padding: 0 12px;
+    height: 40px;
+  }
+
+  .offer .deal-type-text,
+  .offer .property-type-text,
+  .offer .location-text {
+    font-size: 12px;
+  }
+
+  .offer .search-btn {
+    min-width: 120px;
+    font-size: 12px;
+    padding: 0 12px;
+    height: 40px;
+  }
+
+  .offer .countries-grid {
+    grid-template-columns: 1fr;
+  }
+}
