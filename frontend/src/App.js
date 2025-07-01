@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Property from './Property';
-import Listings from './Listings'; // Импортируем Listings
+import Listings from './Listings';
 import Login from './Login';
 import Register from './Register';
 import './index.css';
@@ -59,6 +59,26 @@ function App() {
                 openLoginModal={openLoginModal}
                 openRegisterModal={openRegisterModal}
                 isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Login
+                onClose={closeModals}
+                onSwitchToRegister={openRegisterModal}
+                setAuthenticated={setAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Register
+                onClose={closeModals}
+                onSwitchToLogin={openLoginModal}
+                setAuthenticated={setAuthenticated}
               />
             }
           />

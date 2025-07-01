@@ -124,26 +124,18 @@ const listingsRentShort = [
   },
 ];
 
-// Функция для получения координат по названию города (заглушка, в будущем заменить на API)
 const getCoordinates = (location) => {
   const locationMap = {
     'Berlin, Germany': { lat: 52.5200, lng: 13.4050 },
     'Paris, France': { lat: 48.8566, lng: 2.3522 },
     'Rome, Italy': { lat: 41.9028, lng: 12.4964 },
     'Amsterdam, Netherlands': { lat: 52.3676, lng: 4.9041 },
-    'Madrid, Spain': { lat: 40.4168, lng: -3.7038 },
-    'Vienna, Austria': { lat: 48.2082, lng: 16.3738 },
-    'Riga, Latvia': { lat: 56.9496, lng: 24.1052 },
-    'Lisbon, Portugal': { lat: 38.7223, lng: -9.1393 },
-    'Stockholm, Sweden': { lat: 59.3293, lng: 18.0686 },
     'Barcelona, Spain': { lat: 41.3851, lng: 2.1734 },
-    'Zurich, Switzerland': { lat: 47.3769, lng: 8.5417 },
-    'Nice, France': { lat: 43.7102, lng: 7.2620 },
+    'Lisbon, Portugal': { lat: 38.7223, lng: -9.1393 },
   };
   return locationMap[location] || { lat: 51.5074, lng: -0.1278 };
 };
 
-// Функция для форматирования заголовка
 const formatTitle = (titleKey, t) => {
   const translated = t(titleKey);
   return translated
@@ -161,9 +153,7 @@ function Property({ openLoginModal, isAuthenticated }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const allListings = useMemo(() => {
-    return [...listingsBuy, ...listingsRentLong, ...listingsRentShort];
-  }, []);
+  const allListings = useMemo(() => [...listingsBuy, ...listingsRentLong, ...listingsRentShort], []);
 
   useEffect(() => {
     const foundProperty = allListings.find((listing) => listing.id === parseInt(id));
@@ -171,43 +161,27 @@ function Property({ openLoginModal, isAuthenticated }) {
   }, [id, allListings]);
 
   const coordinates = property?.location ? getCoordinates(property.location) : { lat: 51.5074, lng: -0.1278 };
-  const locationName = property?.location || 'Unknown Location';
-
-  const whatsappLink = property?.contact?.phone
-    ? `https://wa.me/${property.contact.phone}`
-    : '#';
-
+  const whatsappLink = property?.contact?.phone ? `https://wa.me/${property.contact.phone.replace(/^\+/, '')}` : '#';
   const todayViews = Math.floor(Math.random() * 50) + 1;
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
         title: formatTitle(property.title, t),
-        text: `Check out this property: ${formatTitle(property.title, t)} for ${property.price} in ${property.location}`,
+        text: `${formatTitle(property.title, t)} - ${property.price} in ${property.location}`,
         url: window.location.href,
       }).catch((error) => console.log('Error sharing:', error));
     } else {
-      alert('Sharing is not supported on this device. You can copy the URL to share.');
+      alert(t('shareNotSupported'));
     }
   };
 
   const handleFavoriteToggle = () => {
-    setIsFavorite(!isFavorite);
+    if (isAuthenticated) setIsFavorite(!isFavorite);
+    else openLoginModal();
   };
 
-  // Логика для карусели
-  const galleryImages = property ? [property.image, property.image, property.image, property.image] : [];
-  const thumbnails = galleryImages.slice(1);
-  const slidesToShow = 3;
-  const maxSlides = thumbnails.length;
-
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? maxSlides - slidesToShow : prev - 1));
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev >= maxSlides - slidesToShow ? 0 : prev + 1));
-  };
+  const handleSlideChange = (index) => setCurrentSlide(index);
 
   if (!property) {
     return (
@@ -216,8 +190,7 @@ function Property({ openLoginModal, isAuthenticated }) {
           <div className="not-found-container">
             <h2>{t('propertyNotFound')}</h2>
             <Link to="/" className="back-btn">
-              <FiArrowLeft className="back-btn-icon" />
-              {t('backToHome')}
+              <FiArrowLeft className="back-btn-icon" /> {t('backToHome')}
             </Link>
           </div>
         </div>
@@ -244,8 +217,7 @@ function Property({ openLoginModal, isAuthenticated }) {
               </div>
             ) : (
               <button className="property-nav-btn" onClick={openLoginModal}>
-                <FiLogIn className="property-nav-btn-icon" />
-                {t('login')}
+                <FiLogIn className="property-nav-btn-icon" /> {t('login')}
               </button>
             )}
           </div>
@@ -257,110 +229,63 @@ function Property({ openLoginModal, isAuthenticated }) {
           <div className="property-left-column">
             <div className="property-gallery">
               <div className="main-image-container">
-                <img src={property.image} alt={t(property.title)} className="main-image" />
+                <img src={property.image} alt={formatTitle(property.title, t)} className="main-image" />
               </div>
               <div className="thumbnail-gallery">
-                <button className="carousel-arrow carousel-prev" onClick={handlePrevSlide}>
+                <button className="carousel-arrow prev" onClick={() => handleSlideChange(currentSlide - 1 < 0 ? 2 : currentSlide - 1)}>
                   {'<'}
                 </button>
                 <div className="thumbnail-wrapper">
-                  <div
-                    className="thumbnail-track"
-                    style={{
-                      transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
-                      transition: 'transform 0.3s ease',
-                    }}
-                  >
-                    {thumbnails.map((img, index) => (
-                      <div className="thumbnail-slide" key={`thumbnail-${index}`}>
-                        <img
-                          src={img}
-                          alt={`${t(property.title)} Thumbnail ${index + 1}`}
-                          className="thumbnail"
-                        />
+                  <div className="thumbnail-track" style={{ transform: `translateX(-${currentSlide * 33.33}%)`, transition: 'transform 0.3s ease' }}>
+                    {[property.image, property.image, property.image].map((img, index) => (
+                      <div key={index} className="thumbnail-slide">
+                        <img src={img} alt={`${formatTitle(property.title, t)} Thumbnail ${index + 1}`} className="thumbnail" onClick={() => handleSlideChange(index)} />
                       </div>
                     ))}
                   </div>
                 </div>
-                <button className="carousel-arrow carousel-next" onClick={handleNextSlide}>
+                <button className="carousel-arrow next" onClick={() => handleSlideChange((currentSlide + 1) % 3)}>
                   {'>'}
                 </button>
               </div>
             </div>
 
-            <div className="property-details-content">
-              <div className="property-description">
-                <h2>{t('description')}</h2>
-                <p>{property.description || 'No description available.'}</p>
-              </div>
+            <div className="property-description">
+              <h2>{t('description')}</h2>
+              <p>{property.description}</p>
+            </div>
 
-              <div className="property-features">
-                <h2>{t('features')}</h2>
-                <div className="features-grid">
-                  <div className="feature-item">
-                    <FiHome className="feature-icon" />
-                    <span className="feature-label">{t('area')}:</span>
-                    <span>{property.area}</span>
-                  </div>
-                  <div className="feature-item">
-                    <FiGrid className="feature-icon" />
-                    <span className="feature-label">{t('rooms')}:</span>
-                    <span>{property.rooms}</span>
-                  </div>
-                  <div className="feature-item">
-                    <FiDroplet className="feature-icon" />
-                    <span className="feature-label">{t('bathrooms')}:</span>
-                    <span>{property.bathrooms}</span>
-                  </div>
-                  <div className="feature-item">
-                    <FiDollarSign className="feature-icon" />
-                    <span className="feature-label">{t('utilities')}:</span>
-                    <span>{property.utilitiesCost}</span>
-                  </div>
-                </div>
+            <div className="property-features">
+              <h2>{t('features')}</h2>
+              <div className="features-grid">
+                <div className="feature-item"><FiHome className="feature-icon" /><span>{t('area')}:</span> {property.area}</div>
+                <div className="feature-item"><FiGrid className="feature-icon" /><span>{t('rooms')}:</span> {property.rooms}</div>
+                <div className="feature-item"><FiDroplet className="feature-icon" /><span>{t('bathrooms')}:</span> {property.bathrooms}</div>
+                <div className="feature-item"><FiDollarSign className="feature-icon" /><span>{t('utilities')}:</span> {property.utilitiesCost}</div>
               </div>
+            </div>
 
-              <div className="property-map" id="map-section">
-                <h2>{t('location')}</h2>
-                <div className="map-container">
-                  <CustomMap coordinates={coordinates} locationName={locationName} />
-                </div>
-              </div>
-
-              <div className="property-meta">
-                <p>
-                  <span className="meta-label">{t('published')}:</span> {property.publishedDate}
-                </p>
-                <p className="views">
-                  <span className="meta-label">{t('views')}:</span> {property.views} (+ {todayViews}{' '}
-                  {t('today')})
-                </p>
+            <div className="property-map">
+              <h2>{t('location')}</h2>
+              <div className="map-container">
+                <CustomMap coordinates={coordinates} locationName={property.location} />
               </div>
             </div>
           </div>
 
           <div className="property-info">
-            <button
-              className={`favorite-btn ${isFavorite ? 'favorite-active' : ''}`}
-              onClick={handleFavoriteToggle}
-            >
+            <button className={`favorite-btn ${isFavorite ? 'favorite-active' : ''}`} onClick={handleFavoriteToggle}>
               <FiHeart className="favorite-icon" />
             </button>
 
             <div className="property-header-price">
-              <div className="title-price-wrapper">
-                <h1>
-                  {formatTitle(property.title, t)}{' '}
-                  <span className="area-highlight">{property.area}</span>
-                </h1>
-                <span className="property-price">{property.price}</span>
-              </div>
+              <h1>{formatTitle(property.title, t)} <span className="area-highlight">{property.area}</span></h1>
+              <span className="property-price">{property.price}</span>
             </div>
 
             <div className="property-exact-address">
               <a href="#map-section" className="address-link">
-                <FiMapPin className="address-icon" />
-                <span>{property.exactAddress}</span>
+                <FiMapPin className="address-icon" /> {property.exactAddress}
               </a>
             </div>
 
@@ -368,76 +293,40 @@ function Property({ openLoginModal, isAuthenticated }) {
               {showPhone ? (
                 <p className="phone-number">{property.contact.phone}</p>
               ) : (
-                <button
-                  className="contact-btn show-phone-btn"
-                  onClick={() => setShowPhone(true)}
-                >
+                <button className="contact-btn show-phone" onClick={() => setShowPhone(true)}>
                   {t('showPhone')}
                 </button>
               )}
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-btn whatsapp-btn"
-              >
-                <FiMessageSquare className="whatsapp-icon" />
-                {t('whatsAppMessage')}
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="contact-btn whatsapp">
+                <FiMessageSquare className="whatsapp-icon" /> {t('whatsAppMessage')}
               </a>
-              <button className="contact-btn book-btn">
-                {t('bookViewing')}
-              </button>
-              <button className="share-btn" onClick={handleShare}>
-                <FiShare2 className="share-icon" />
-                {t('share')}
+              <button className="contact-btn book">{t('bookViewing')}</button>
+              <button className="contact-btn share" onClick={handleShare}>
+                <FiShare2 className="share-icon" /> {t('share')}
               </button>
             </div>
 
-            <div className="property-seller-contact">
-              <div className="seller-details">
-                <div className="seller-header">
-                  <img
-                    src={property.sellerInfo.avatar}
-                    alt={property.sellerInfo.name}
-                    className="seller-avatar"
-                  />
-                  <h2>
-                    {property.sellerInfo.name}{' '}
-                    {property.sellerInfo.isRealtor && <FiUserCheck className="realtor-icon" />}
-                  </h2>
-                </div>
-                <button
-                  className={`subscribe-btn ${isSubscribed ? 'subscribed' : ''}`}
-                  onClick={() => setIsSubscribed(!isSubscribed)}
-                >
-                  {isSubscribed ? t('unsubscribe') : t('subscribe')}
-                </button>
+            <div className="property-seller">
+              <div className="seller-header">
+                <img src={property.sellerInfo.avatar} alt={property.sellerInfo.name} className="seller-avatar" />
+                <h2>{property.sellerInfo.name} {property.sellerInfo.isRealtor && <FiUserCheck className="realtor-icon" />}</h2>
               </div>
+              <button className={`subscribe-btn ${isSubscribed ? 'subscribed' : ''}`} onClick={() => setIsSubscribed(!isSubscribed)}>
+                {isSubscribed ? t('unsubscribe') : t('subscribe')}
+              </button>
             </div>
 
             <div className="property-house-info">
               <div className="house-info-grid">
-                <div className="house-info-item">
-                  <FiHome className="house-info-icon" />
-                  <span className="house-info-value">{property.area}</span>
-                  <span className="house-info-label">{t('area')}</span>
-                </div>
-                <div className="house-info-item">
-                  <FiGrid className="house-info-icon" />
-                  <span className="house-info-value">{property.houseInfo.floor}</span>
-                  <span className="house-info-label">{t('floor')}</span>
-                </div>
-                <div className="house-info-item">
-                  <FiDroplet className="house-info-icon" />
-                  <span className="house-info-value">{property.rooms}</span>
-                  <span className="house-info-label">{t('rooms')}</span>
-                </div>
-                <div className="house-info-item">
-                  <FiCalendar className="house-info-icon" />
-                  <span className="house-info-value">{property.houseInfo.yearBuilt}</span>
-                  <span className="house-info-label">{t('yearBuilt')}</span>
-                </div>
+                <div className="house-info-item"><FiHome className="house-info-icon" /><span>{property.area}</span><span>{t('area')}</span></div>
+                <div className="house-info-item"><FiGrid className="house-info-icon" /><span>{property.houseInfo.floor}</span><span>{t('floor')}</span></div>
+                <div className="house-info-item"><FiCalendar className="house-info-icon" /><span>{property.houseInfo.yearBuilt}</span><span>{t('yearBuilt')}</span></div>
               </div>
+            </div>
+
+            <div className="property-meta">
+              <p><span>{t('published')}:</span> {property.publishedDate}</p>
+              <p className="views"><span>{t('views')}:</span> {property.views} (+{todayViews} {t('today')})</p>
             </div>
           </div>
         </div>
@@ -445,18 +334,9 @@ function Property({ openLoginModal, isAuthenticated }) {
 
       <footer className="footer">
         <div className="footer-container">
-          <div>
-            <h3>{t('footerAbout')}</h3>
-            <p>{t('footerAboutText')}</p>
-          </div>
-          <div>
-            <h3>{t('footerSupport')}</h3>
-            <p>{t('footerSupportEmail')}</p>
-          </div>
-          <div>
-            <h3>{t('footerContacts')}</h3>
-            <p>{t('footerPhone')}</p>
-          </div>
+          <div><h3>{t('footerAbout')}</h3><p>{t('footerAboutText')}</p></div>
+          <div><h3>{t('footerSupport')}</h3><p>{t('footerSupportEmail')}</p></div>
+          <div><h3>{t('footerContacts')}</h3><p>{t('footerPhone')}</p></div>
         </div>
       </footer>
     </div>

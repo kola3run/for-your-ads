@@ -1,43 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* Базовые стили */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #FFFFFF;
+  background-color: #F5F5F5;
   color: #000000;
 }
 
-/* Хедер */
 .property-header {
   background-color: #FFFFFF;
-  padding: 40px 0;
+  padding: 20px 0;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .property-header-container {
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 120px;
+  padding: 0 80px;
 }
 
 .property-header-left {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 }
 
 .property-logo {
   height: 60px;
   width: auto;
-}
-
-.property-header-title {
-  margin: 0;
 }
 
 .property-header-title h1 {
@@ -56,7 +51,6 @@ body {
 .property-nav-btn {
   padding: 10px 20px;
   border-radius: 12px;
-  text-decoration: none;
   font-weight: 600;
   font-size: 14px;
   color: #6B2D5C;
@@ -66,91 +60,19 @@ body {
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
 .property-nav-btn:hover {
   background-color: #6B2D5C;
   color: #FFFFFF;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .property-nav-btn-icon {
   font-size: 16px;
 }
 
-.property-primary {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
-  border: none;
-}
-
-.property-primary:hover {
-  background-color: #5A264F;
-  color: #FFFFFF;
-  border: none;
-}
-
-/* Выпадающие меню */
-.property-dropdown {
-  position: relative;
-}
-
-.property-dropdown-btn {
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  color: #6B2D5C;
-  border: 2px solid #E5E5E5;
-  background-color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.property-dropdown-btn:hover {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.property-dropdown-content {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-width: 150px;
-  z-index: 1000;
-  display: none;
-}
-
-.property-dropdown:hover .property-dropdown-content {
-  display: block;
-}
-
-.property-dropdown-item {
-  padding: 10px 15px;
-  font-size: 14px;
-  color: #212529;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.property-dropdown-item:hover {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
-}
-
-/* Аватарка пользователя */
 .property-user-avatar {
   width: 44px;
   height: 44px;
@@ -161,8 +83,11 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.property-user-avatar:hover {
+  transform: scale(1.1);
 }
 
 .property-avatar-icon {
@@ -170,68 +95,63 @@ body {
   color: #6B2D5C;
 }
 
-.property-user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Стили страницы Property */
 .page-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #FFFFFF;
 }
 
 .property-details {
   flex: 1;
-  padding: 100px 120px 0;
-  background-color: #FFFFFF;
+  padding: 40px 80px 0;
 }
 
 .property-content {
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   gap: 40px;
 }
 
 .property-left-column {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
 .property-gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.main-image-container {
-  width: 100%;
+  position: relative;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.main-image-container {
+  width: 100%;
+}
+
 .main-image {
   width: 100%;
-  height: 350px;
+  height: 400px;
   object-fit: cover;
-  aspect-ratio: 4 / 3;
+  transition: transform 0.3s ease;
+}
+
+.property-gallery:hover .main-image {
+  transform: scale(1.05);
 }
 
 .thumbnail-gallery {
   display: flex;
   align-items: center;
   gap: 10px;
-  position: relative;
+  padding: 10px 0;
+  background-color: #FFF;
 }
 
 .carousel-arrow {
-  background-color: #FFFFFF;
+  background-color: #FFF;
   border: 1px solid #E5E5E5;
   border-radius: 50%;
   width: 30px;
@@ -247,17 +167,12 @@ body {
 
 .carousel-arrow:hover {
   background-color: #6B2D5C;
-  color: #FFFFFF;
+  color: #FFF;
   border-color: #6B2D5C;
 }
 
-.carousel-prev {
-  left: -15px;
-}
-
-.carousel-next {
-  right: -15px;
-}
+.prev { order: -1; }
+.next { order: 2; }
 
 .thumbnail-wrapper {
   flex: 1;
@@ -270,28 +185,23 @@ body {
 }
 
 .thumbnail-slide {
-  flex: 0 0 calc(25% - 7.5px);
+  flex: 0 0 33.33%;
+  transition: transform 0.3s ease;
 }
 
 .thumbnail {
   width: 100%;
   height: 80px;
   object-fit: cover;
-  aspect-ratio: 4 / 3;
   border-radius: 8px;
   border: 1px solid #E5E5E5;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .thumbnail:hover {
   border-color: #6B2D5C;
   transform: scale(1.05);
-}
-
-.property-details-content {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
 }
 
 .property-description h2,
@@ -312,23 +222,22 @@ body {
 .features-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 15px;
 }
 
 .feature-item {
   display: flex;
   align-items: center;
   gap: 10px;
+  background: #FFF;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .feature-icon {
   font-size: 20px;
   color: #6B2D5C;
-}
-
-.feature-label {
-  font-weight: 600;
-  color: #212529;
 }
 
 .map-container {
@@ -339,33 +248,20 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.property-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
-  color: #666;
-}
-
-.meta-label {
-  font-weight: 600;
-  color: #212529;
-}
-
-.views {
-  color: #6B2D5C;
-}
-
 .property-info {
-  flex: 0 0 250px; /* Увеличили ширину до 250px */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Увеличили зазор для лучшего баланса */
+  gap: 20px;
+  padding: 20px;
+  background: #FFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .favorite-btn {
   align-self: flex-end;
-  background-color: #FFFFFF;
+  background: transparent;
   border: 1px solid #E5E5E5;
   border-radius: 50%;
   width: 40px;
@@ -378,33 +274,21 @@ body {
 }
 
 .favorite-btn:hover {
-  background-color: #F0F0F0;
+  background: #F0F0F0;
 }
 
 .favorite-active {
-  background-color: #6B2D5C;
+  background: #6B2D5C;
   border-color: #6B2D5C;
 }
 
 .favorite-active .favorite-icon {
-  color: #FFFFFF;
+  color: #FFF;
 }
 
 .favorite-icon {
   font-size: 20px;
   color: #6B2D5C;
-}
-
-.property-header-price {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.title-price-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
 }
 
 .property-header-price h1 {
@@ -429,13 +313,7 @@ body {
   color: #6B2D5C;
 }
 
-.property-exact-address {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.address-link {
+.property-exact-address .address-link {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -443,7 +321,7 @@ body {
   color: #212529;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .address-link:hover {
@@ -455,54 +333,14 @@ body {
   color: #6B2D5C;
 }
 
-.property-house-info {
-  padding: 10px;
-  background-color: #F9F9F9;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 10px;
-  display: block;
-}
-
-.house-info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.house-info-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 5px;
-}
-
-.house-info-icon {
-  font-size: 20px;
-  color: #6B2D5C;
-}
-
-.house-info-value {
-  font-size: 16px;
-  font-weight: 600;
-  color: #212529;
-}
-
-.house-info-label {
-  font-size: 12px;
-  color: #666;
-}
-
 .contact-buttons {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 15px;
+  gap: 10px;
 }
 
 .contact-btn {
-  padding: 6px; /* Уменьшили padding для компактности */
+  padding: 10px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
@@ -514,56 +352,52 @@ body {
   cursor: pointer;
 }
 
-.show-phone-btn {
-  background-color: #FFFFFF;
+.show-phone {
+  background: #FFF;
   color: #6B2D5C;
   border: 2px solid #6B2D5C;
 }
 
-.show-phone-btn:hover {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
+.show-phone:hover {
+  background: #6B2D5C;
+  color: #FFF;
 }
 
-.whatsapp-btn {
-  background-color: #25D366;
-  color: #FFFFFF;
+.whatsapp {
+  background: #25D366;
+  color: #FFF;
   border: none;
   text-decoration: none;
 }
 
-.whatsapp-btn:hover {
-  background-color: #20B058;
+.whatsapp:hover {
+  background: #20B058;
 }
 
 .whatsapp-icon {
   font-size: 16px;
 }
 
-.book-btn {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
+.book {
+  background: #6B2D5C;
+  color: #FFF;
   border: none;
 }
 
-.book-btn:hover {
-  background-color: #5A264F;
+.book:hover {
+  background: #5A264F;
 }
 
-.share-btn {
-  background-color: #FFFFFF;
+.share {
+  background: #FFF;
   color: #6B2D5C;
   border: 2px solid #E5E5E5;
 }
 
-.share-btn:hover {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
+.share:hover {
+  background: #6B2D5C;
+  color: #FFF;
   border-color: #6B2D5C;
-}
-
-.share-icon {
-  font-size: 16px;
 }
 
 .phone-number {
@@ -571,20 +405,13 @@ body {
   font-weight: 600;
   color: #212529;
   text-align: center;
-  margin: 0;
 }
 
-.property-seller-contact {
-  padding: 10px;
-  background-color: #F9F9F9;
-  border-radius: 12px;
+.property-seller {
+  padding: 15px;
+  background: #F9F9F9;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.seller-details {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .seller-header {
@@ -618,7 +445,7 @@ body {
 
 .subscribe-btn {
   padding: 10px;
-  background-color: #FFFFFF;
+  background: #FFF;
   color: #6B2D5C;
   border: 2px solid #6B2D5C;
   border-radius: 8px;
@@ -629,21 +456,74 @@ body {
 }
 
 .subscribe-btn:hover {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
+  background: #6B2D5C;
+  color: #FFF;
 }
 
 .subscribed {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
+  background: #6B2D5C;
+  color: #FFF;
   border-color: #6B2D5C;
 }
 
 .subscribed:hover {
-  background-color: #5A264F;
+  background: #5A264F;
 }
 
-/* Стили для страницы "Не найдено" */
+.property-house-info {
+  padding: 15px;
+  background: #F9F9F9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.house-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.house-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.house-info-icon {
+  font-size: 20px;
+  color: #6B2D5C;
+}
+
+.house-info-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.house-info-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.property-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.property-meta span {
+  font-weight: 600;
+  color: #212529;
+}
+
+.views {
+  color: #6B2D5C;
+}
+
 .not-found {
   flex: 1;
   display: flex;
@@ -654,8 +534,6 @@ body {
 
 .not-found-container {
   text-align: center;
-  display: flex;
-  flex-direction: column;
   gap: 20px;
 }
 
@@ -668,11 +546,10 @@ body {
 .back-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
   padding: 10px 20px;
-  background-color: #6B2D5C;
-  color: #FFFFFF;
+  background: #6B2D5C;
+  color: #FFF;
   border: none;
   border-radius: 8px;
   font-size: 14px;
@@ -682,7 +559,7 @@ body {
 }
 
 .back-btn:hover {
-  background-color: #5A264F;
+  background: #5A264F;
   transform: scale(1.05);
 }
 
@@ -690,11 +567,10 @@ body {
   font-size: 16px;
 }
 
-/* Подвал */
 .footer {
-  background-color: #6B2D5C;
-  color: #FFFFFF;
-  padding: 40px 60px;
+  background: #6B2D5C;
+  color: #FFF;
+  padding: 40px 80px;
 }
 
 .footer-container {
@@ -717,10 +593,9 @@ body {
   line-height: 1.5;
 }
 
-/* Адаптивность */
 @media (max-width: 1024px) {
   .property-details {
-    padding: 80px 60px 0;
+    padding: 40px 60px 0;
   }
 
   .property-header-container {
@@ -733,43 +608,34 @@ body {
   }
 
   .property-info {
-    flex: 1;
+    width: 100%;
   }
 
-  .footer {
-    padding: 30px;
+  .thumbnail-slide {
+    flex: 0 0 33.33%;
+  }
+
+  .house-info-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .property-header {
-    padding: 20px 0;
-  }
-
   .property-header-container {
-    padding: 0 30px;
-  }
-
-  .property-header-left {
-    gap: 15px;
-  }
-
-  .property-header-title h1 {
-    font-size: 20px;
+    padding: 0 40px;
   }
 
   .property-logo {
     height: 50px;
   }
 
-  .property-nav-btn,
-  .property-dropdown-btn {
-    padding: 8px 15px;
-    font-size: 12px;
+  .property-header-title h1 {
+    font-size: 20px;
   }
 
-  .property-nav-btn-icon {
-    font-size: 14px;
+  .property-nav-btn {
+    padding: 8px 15px;
+    font-size: 12px;
   }
 
   .property-user-avatar {
@@ -783,25 +649,15 @@ body {
   }
 
   .property-details {
-    padding: 60px 30px 0;
-  }
-
-  .property-left-column {
-    gap: 20px;
+    padding: 30px 40px 0;
   }
 
   .main-image {
     height: 300px;
-    aspect-ratio: 4 / 3;
-  }
-
-  .thumbnail-slide {
-    flex: 0 0 calc(25% - 7.5px);
   }
 
   .thumbnail {
     height: 60px;
-    aspect-ratio: 4 / 3;
   }
 
   .features-grid {
@@ -812,71 +668,32 @@ body {
     height: 250px;
   }
 
-  .property-header-price h1 {
-    font-size: 20px;
-  }
-
-  .area-highlight {
-    font-size: 14px;
-  }
-
-  .property-price {
-    font-size: 18px;
-  }
-
-  .seller-header h2 {
-    font-size: 16px;
-  }
-
-  .seller-avatar {
-    width: 40px;
-    height: 40px;
-  }
-
   .house-info-grid {
     grid-template-columns: 1fr;
-  }
-
-  .footer {
-    padding: 20px 15px;
   }
 }
 
 @media (max-width: 480px) {
-  .property-header {
-    padding: 15px 0;
-  }
-
   .property-header-container {
-    padding: 0 15px;
-  }
-
-  .property-header-left {
-    gap: 10px;
-  }
-
-  .property-header-title h1 {
-    font-size: 18px;
+    padding: 0 20px;
   }
 
   .property-logo {
     height: 40px;
   }
 
-  .property-nav-btn,
-  .property-dropdown-btn {
-    padding: 6px 12px;
-    font-size: 12px;
+  .property-header-title h1 {
+    font-size: 18px;
   }
 
-  .property-nav-btn-icon {
+  .property-nav-btn {
+    padding: 6px 12px;
     font-size: 12px;
   }
 
   .property-user-avatar {
     width: 36px;
     height: 36px;
-    border-width: 2px;
   }
 
   .property-avatar-icon {
@@ -884,21 +701,15 @@ body {
   }
 
   .property-details {
-    padding: 40px 15px 0;
-  }
-
-  .property-left-column {
-    gap: 20px;
+    padding: 20px 15px 0;
   }
 
   .main-image {
     height: 250px;
-    aspect-ratio: 4 / 3;
   }
 
   .thumbnail {
     height: 50px;
-    aspect-ratio: 4 / 3;
   }
 
   .property-description h2,
@@ -907,52 +718,31 @@ body {
     font-size: 18px;
   }
 
-  .property-meta {
-    font-size: 12px;
-  }
-
-  .favorite-btn {
-    width: 35px;
-    height: 35px;
-  }
-
-  .favorite-icon {
-    font-size: 18px;
-  }
-
-  .property-header-price h1 {
-    font-size: 18px;
-  }
-
-  .property-price {
-    font-size: 16px;
-  }
-
   .contact-btn {
     font-size: 12px;
-    padding: 4px; /* Ещё меньше padding для маленьких экранов */
+    padding: 8px;
   }
 
   .phone-number {
     font-size: 12px;
   }
 
-  .seller-header h2 {
-    font-size: 14px;
+  .seller-avatar {
+    width: 40px;
+    height: 40px;
   }
 
-  .seller-avatar {
-    width: 35px;
-    height: 35px;
+  .seller-header h2 {
+    font-size: 16px;
   }
 
   .subscribe-btn {
     font-size: 12px;
-    padding: 8px;
+    padding: 6px;
   }
 
   .not-found {
-    padding: 30px;
+    padding: 20px;
   }
 
   .not-found h2 {
@@ -965,6 +755,6 @@ body {
   }
 
   .footer {
-    padding: 15px 10px;
+    padding: 20px 15px;
   }
 }

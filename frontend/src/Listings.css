@@ -15,6 +15,8 @@
   background-color: #FFFFFF;
   padding: 15px 80px;
   z-index: 1000;
+  position: sticky;
+  top: 0;
 }
 
 .listings-header-container {
@@ -41,7 +43,7 @@
 }
 
 .listings-header-title h3 {
-  font-size: 24px; /* Точно как в Home.css (.header-title h1) */
+  font-size: 24px;
   font-weight: 700;
   color: #000000;
   margin: 0;
@@ -186,7 +188,7 @@
 
 .filter-section.fixed {
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
   right: 0;
   z-index: 999;
@@ -200,7 +202,11 @@
 .listings-container {
   max-width: 1440px;
   margin: 0 auto;
-  margin-top: 40px; /* Увеличиваем отступ от фильтра */
+  margin-top: 40px;
+}
+
+.listings-container .filter-section.fixed + .listings-list {
+  padding-top: 80px;
 }
 
 /* Список листингов */
@@ -209,11 +215,6 @@
   flex-direction: column;
   gap: 30px;
   margin-top: 20px;
-}
-
-/* Когда фильтр фиксирован, добавляем дополнительный отступ */
-.filter-section.fixed + .listings-container {
-  padding-top: 80px; /* Учитываем высоту фиксированного фильтра */
 }
 
 /* Карточка листинга */
@@ -226,7 +227,7 @@
   border-radius: 16px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   gap: 20px;
-  min-height: 300px; /* Минимальная высота карточки */
+  min-height: 300px;
 }
 
 .listing-card:hover {
@@ -436,7 +437,7 @@
   margin: 12px 0 0;
   line-height: 1.6;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Ограничим описание тремя строками */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -590,7 +591,7 @@
   }
 
   .listings-header-title h3 {
-    font-size: 20px; /* Как в Home.css */
+    font-size: 20px;
   }
 }
 
@@ -600,11 +601,11 @@
   }
 
   .listings-header-title h3 {
-    font-size: 18px; /* Как в Home.css */
+    font-size: 18px;
   }
 
   .listings-logo {
-    height: 40px; /* Как в Home.css */
+    height: 40px;
   }
 
   .listings-dropdown-btn {
@@ -734,7 +735,7 @@
 
   .listing-card {
     gap: 8px;
-    min-height: 250px; /* Меньшая высота для мобильных */
+    min-height: 250px;
   }
 
   .listing-image-container {
@@ -747,11 +748,11 @@
 
   .thumbnail-image {
     width: 100px;
-    min-width: 100px; /* Минимальная ширина для thumbnails */
+    min-width: 100px;
   }
 
   .listing-details h3 {
-    font-size: 20px; /* Чуть больше для читаемости */
+    font-size: 20px;
   }
 
   .listing-details .price {
@@ -764,7 +765,7 @@
 
   .listing-details .description {
     font-size: 13px;
-    -webkit-line-clamp: 2; /* Меньше строк на мобильных */
+    -webkit-line-clamp: 2;
   }
 
   .spec-property-type,
