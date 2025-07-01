@@ -100,6 +100,7 @@
   line-height: 1;
   border: none;
   border-radius: 8px 0 0 8px;
+  width: auto; /* Адаптивная ширина */
 }
 
 .location-selector.has-divider .location-part.country::after {
@@ -218,6 +219,7 @@
   line-height: 1;
   border: none;
   border-radius: 0;
+  width: auto; /* Адаптивная ширина */
 }
 
 .deal-type-selector.has-divider .deal-type-part.deal::after {
@@ -380,6 +382,7 @@
   line-height: 1;
   border: none;
   border-radius: 0;
+  width: auto; /* Адаптивная ширина */
 }
 
 .property-type-part {
@@ -476,6 +479,7 @@
   padding: 0;
   height: clamp(28px, 4vw, 40px);
   box-sizing: border-box;
+  width: auto; /* Адаптивная ширина */
 }
 
 .room-button {
@@ -495,8 +499,8 @@
   border-radius: 4px;
   margin: 0;
   position: relative;
-  flex: 1;
-  min-width: 40px; /* Уменьшаем минимальную ширину */
+  flex: 1 0 auto; /* Позволяет кнопкам адаптироваться */
+  min-width: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -551,6 +555,7 @@
   box-sizing: border-box;
   padding: 0;
   background-color: #FFFFFF;
+  width: auto; /* Адаптивная ширина */
 }
 
 .price-input {
@@ -1015,7 +1020,7 @@
   }
 
   .room-button {
-    min-width: 35px; /* Еще уменьшаем ширину для узких экранов */
+    min-width: 35px;
     font-size: clamp(9px, 1.6vw, 12px);
   }
 
